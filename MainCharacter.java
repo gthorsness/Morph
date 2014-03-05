@@ -1,4 +1,4 @@
-package kiloboltgame;
+package morphgame;
 
 import java.awt.Graphics;
 
@@ -14,7 +14,7 @@ public class MainCharacter{
     private boolean jumped = false;
     private boolean movingLeft = false;
     private boolean movingRight = false;
-    private boolean ducked = false;
+    
 
         private static Background bg1 = StartingClass.getBg1();                 
         private static Background bg2 = StartingClass.getBg2();
@@ -148,14 +148,6 @@ public class MainCharacter{
 
     public void setSpeedY(int speedY) {
         this.speedY = speedY;
-    }
-
-    public boolean isDucked() {
-        return ducked;
-    }
-
-    public void setDucked(boolean ducked) {
-        this.ducked = ducked;
     }
 
     public boolean isMovingRight() {
