@@ -1,4 +1,4 @@
-package kiloboltgame;
+package morphgame;
 
 import java.applet.Applet;
 import java.awt.Color;
@@ -38,7 +38,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		characterDown = getImage(base, "data/down.png");
 		characterJumped = getImage(base, "data/jump.png");
 		currentSprite = character;
-		background = getImage(base, "data/background.png");
+		background = getImage(base, "data/backgroundMockUp1.png");
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 			mainCharacter.update();
 			if (mainCharacter.isJumped()){
 				currentSprite = characterJumped;
-			}else if (mainCharacter.isJumped() == false && mainCharacter.isDucked() == false){
+			}else if (mainCharacter.isJumped() == false){
 				currentSprite = character;
 			}
 			bg1.update();
@@ -110,13 +110,6 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
             System.out.println("Move up");
             break;
 
-        case KeyEvent.VK_DOWN:
-            currentSprite = characterDown;
-            if (mainCharacter.isJumped() == false){
-                mainCharacter.setDucked(true);
-                mainCharacter.setSpeedX(0);
-            }
-            break;
 
         case KeyEvent.VK_LEFT:
             mainCharacter.moveLeft();
@@ -143,10 +136,6 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
             System.out.println("Stop moving up");
             break;
 
-        case KeyEvent.VK_DOWN:
-            currentSprite = character;
-            mainCharacter.setDucked(false);
-            break;
 
         case KeyEvent.VK_LEFT:
             mainCharacter.stopLeft();
