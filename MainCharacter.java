@@ -16,8 +16,8 @@ public class MainCharacter{
     private boolean movingRight = false;
     private boolean ducked = false;
 
-        private static Background bg1 = StartingClass.getBg1();                 
-        private static Background bg2 = StartingClass.getBg2();
+    private static Background bg1 = StartingClass.getBg1();                 
+    private static Background bg2 = StartingClass.getBg2();
 
     private int speedX = 0;
     private int speedY = 1;
@@ -68,12 +68,14 @@ public class MainCharacter{
     public void moveRight() {
         if (ducked == false) {
             speedX = MOVESPEED;
+            movingRight = true;
         }
     }
 
     public void moveLeft() {
         if (ducked == false) {
             speedX = -MOVESPEED;
+            movingLeft = true;
         }
     }
 
