@@ -40,7 +40,7 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		characterBack = getImage(base,"data/squareBack.png");
 		
 		currentSprite = character;
-		background = getImage(base, "data/background.png");
+		background = getImage(base, "data/backgroundMockUp1.png");
 	}
 
 	@Override
