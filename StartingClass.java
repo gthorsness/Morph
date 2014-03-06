@@ -1,4 +1,4 @@
-package kiloboltgame;
+package morphgame;
 
 import java.applet.Applet;
 import java.awt.Color;
@@ -17,6 +17,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 	private URL base;
 	private static Background bg1,bg2;
 	
+	//This initializes the window that the game will be played in
+	//It also initializes the images used for characters and backgrounds
 	@Override
 	public void init() {
 
@@ -41,6 +43,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		background = getImage(base, "data/background.png");
 	}
 
+	//This method initializes the backgrounds and the main character
+	//Then it starts the game loop
 	@Override
 	public void start() {
 		bg1 = new Background(0, 0);
@@ -49,17 +53,22 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		Thread thread = new Thread(this);
 		thread.start();
 	}
-
+	
+	//This isn't used yet
 	@Override
 	public void stop() {
 		// TODO Auto-generated method stub
 	}
-
+	
+	//This isn't used yet
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
-
+	
+	//This is the main game loop
+	//Controls when updates are made to the character's sprite
+	//and location of the character to the background
 	@Override
 	public void run() {
 		while (true) {
@@ -73,13 +82,15 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 			bg2.update();
 			repaint();
 			try {
-				Thread.sleep(17);
+				Thread.sleep(17);//Sleep 17 milliseconds gives you 60 fps
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-
+	
+	//This acts another graphics buffer 
+	//Without this graphics will be choppy
 	@Override
 	public void update(Graphics g) {
 		if (image == null) {
@@ -95,7 +106,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		g.drawImage(image, 0, 0, this);
 
 	}
-
+	
+	//Outputs graphics to the screen
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(background, bg1.getBgX(), bg1.getBgY(), this);
@@ -103,6 +115,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		g.drawImage(currentSprite, mainCharacter.getCenterX() - 61, mainCharacter.getCenterY() - 63, this);
 	}
 	
+	//Takes in user input from the keyboard
+	//Calls appropriate character action
 	public void keyPressed(KeyEvent e) {
 	
         switch (e.getKeyCode()) {
@@ -136,7 +150,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 
     }
 
-	    @Override
+	//When the key is released we need to have the character return to the natural starting position
+    @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
@@ -162,17 +177,20 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
         }
 
     }
-
+    
+    //not used yet
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 	
+	//Gets background 1
 	public static Background getBg1() {
         return bg1;
     }
-
+	
+	//Gets background 2
     public static Background getBg2() {
         return bg2;
     }
