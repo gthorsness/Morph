@@ -1,4 +1,4 @@
-package kiloboltgame;
+package morphgame;
 
 import java.awt.Graphics;
 
