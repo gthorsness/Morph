@@ -12,7 +12,7 @@ import java.net.URL;
 public class StartingClass extends Applet implements Runnable, KeyListener {
 	
 	private MainCharacter mainCharacter;
-	private Image image, character,characterDown,characterJumped,currentSprite, background;
+	private Image image, character,characterDown,characterJumped,characterForward,characterBack,currentSprite, background;
 	private Graphics second;
 	private URL base;
 	private static Background bg1,bg2;
@@ -28,15 +28,17 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		frame.setTitle("Morph");
 		try {
 			base = getDocumentBase();
-			System.out.println(getDocumentBase());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
 		// Image Setups
-		character = getImage(base, "data/character.png");
-		characterDown = getImage(base, "data/down.png");
-		characterJumped = getImage(base, "data/jump.png");
+		character = getImage(base, "data/square.png");
+		characterDown = getImage(base, "data/squareDown.png");
+		characterJumped = getImage(base, "data/squareJump.png");
+		characterForward = getImage(base,"data/squareForward.png");
+		characterBack = getImage(base,"data/squareBack.png");
+		
 		currentSprite = character;
 		background = getImage(base, "data/background.png");
 	}
@@ -64,7 +66,13 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 	public void run() {
 		while (true) {
 			mainCharacter.update();
-			if (mainCharacter.isJumped()){
+			if(mainCharacter.isMovingLeft()){
+				currentSprite = characterBack;
+			}
+			else if(mainCharacter.isMovingRight()){
+				currentSprite = characterForward;
+			}
+			else if (mainCharacter.isJumped()){
 				currentSprite = characterJumped;
 			}else if (mainCharacter.isJumped() == false && mainCharacter.isDucked() == false){
 				currentSprite = character;
@@ -130,13 +138,13 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 
         case KeyEvent.VK_SPACE:
             mainCharacter.jump();
-            break;
+                 break;
 
         }
 
     }
 
-	    @Override
+	@Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
@@ -166,7 +174,6 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-
 	}
 	
 	public static Background getBg1() {
