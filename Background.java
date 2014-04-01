@@ -1,20 +1,20 @@
 package morphgame;
 
-public class Background{
-private int bgX,bgY,speedX=0;
-	
-	public Background(int x,int y){
-		bgX= x;
-		bgY = y;
-		speedX=0;
-	}
-	
-	public void update() {
-	   bgX += speedX;
+public class Background {
+	private int bgX, bgY, speedX;
 
-	   if (bgX <= -2160){
-	      bgX += 4320;
-	   }
+	public Background(int x, int y) {
+		bgX = x;
+		bgY = y;
+		speedX = 0;
+	}
+
+	public void update() {
+		bgX += speedX;
+
+		if (bgX <= -2160) {
+			bgX += 4320;
+		}
 	}
 
 	public int getBgX() {
